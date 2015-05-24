@@ -1,0 +1,26 @@
+### NO.1
+codegen:module -Dpath=bizprocess.user -Dname=User -Dtables=t_usr_profile,t_usr_account -Dclean=true
+  <ec:transaction transactionManager="transactionManager" pointcut="execution(* me.cungu.footmark.bizprocess..ucc.I*UCC.*(..))" />
+
+
+### NO.2
+codegen:model
+codegen:dao -Dpath=user -Dtables=t_usr_profile,t_usr_account -Dclean=true
+codegen:module -Dpath=bizprocess.user -Dname=User -DgenDAO=false -Dclean=true
+
+  <ec:transaction transactionManager="transactionManager" pointcut="execution(* me.cungu.footmark.bizprocess..ucc.I*UCC.*(..))" />
+
+
+### NO.3
+codegen:model
+codegen:dao -Dpath=user -Dtables=t_usr_profile,t_usr_account -Dclean=true
+codegen:module -Dpath=bizprocess.user -Dname=User -DgenUCC=false -DgenDAO=false -Dclean=true
+  
+  <ec:transaction transactionManager="transactionManager" pointcut="execution(* me.cungu.footmark.bizprocess..bs.I*BS.*(..))" />
+
+
+### 
+codegen:dao
+codegen:model
+
+<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false"/>

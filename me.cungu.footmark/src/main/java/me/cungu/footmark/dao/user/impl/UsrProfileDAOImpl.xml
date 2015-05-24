@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user">
+	
+	<insert id="saveUsrProfileBO" parameterType="UsrProfileBO">
+		INSERT INTO t_usr_profile(id,nick_name,password,mobile_no,status,user_source,reg_time,reg_ip,created_time,update_time) 
+		VALUES(#{id},#{nickName},#{password},#{mobileNo},#{status},#{userSource},#{regTime},#{regIp},#{createdTime},#{updateTime})
+	</insert>
+	
+	<delete id="deleteUsrProfileBOById" parameterType="long">
+		DELETE FROM t_usr_profile WHERE id=#{id}
+	</delete>
+	
+	<update id="updateUsrProfileBOById" parameterType="UsrProfileBO">
+		UPDATE t_usr_profile
+		SET update_time=#{updateTime}
+		<if test="nickName!=null and nickName!=''">,nick_name=#{nickName}</if>
+		<if test="password!=null and password!=''">,password=#{password}</if>
+		<if test="mobileNo!=null and mobileNo!=''">,mobile_no=#{mobileNo}</if>
+		<if test="status!=null and status!=''">,status=#{status}</if>
+		<if test="userSource!=null and userSource!=''">,user_source=#{userSource}</if>
+		<if test="regTime!=null">,reg_time=#{regTime}</if>
+		<if test="regIp!=null and regIp!=''">,reg_ip=#{regIp}</if>
+ 		WHERE id=#{id}
+	</update>
+	
+	<select id="findUsrProfileBOById" parameterType="long" resultType="UsrProfileBO">
+		SELECT id,nick_name,password,mobile_no,status,user_source,reg_time,reg_ip,created_time,update_time 
+		FROM t_usr_profile 
+		WHERE id=#{id}
+	</select>
+</mapper>

@@ -1,0 +1,7 @@
+<#-- ${Request["r"]}  
+${Session["s"]}
+${Request} 
+${Request["__web_events"]}  --#>
+
+
+${env["app.name"]} - ${rc.getLocale()}
